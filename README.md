@@ -261,24 +261,13 @@ Tracked in detail under `docs/concepts/`. Highlights:
 
 ## 🗺️ Roadmap
 
-- [ ] Phase 1 — Learning phase (in progress, tracked in `docs/`)
-- [ ] Phase 2 — Build raw ingestion + first Glue crawler
-- [ ] Phase 3 — Build clean-zone ETL job (Parquet, partitioned)
-- [ ] Phase 4 — Build analytics-zone aggregates
-- [ ] Phase 5 — Add data quality tests
-- [ ] Phase 6 — Migrate to Terraform for IaC
-- [ ] Phase 7 — Add orchestration (Step Functions or Airflow)
-- [ ] Phase 8 — Add dbt models on top of the analytics layer
-- [ ] Phase 9 — Connect a BI tool (QuickSight or Metabase) for dashboards
+- [ ] Phase 1 — Build raw ingestion + first Glue crawler
+- [ ] Phase 2 — Build clean-zone ETL job (Parquet, partitioned)
+- [ ] Phase 3 — Build analytics-zone aggregates
+- [ ] Phase 4 — Add data quality tests
+- [ ] Phase 5 — Migrate to Terraform for IaC
+- [ ] Phase 6 — Add orchestration (Step Functions or Airflow)
+- [ ] Phase 7 — Add dbt models on top of the analytics layer
+- [ ] Phase 8 — Connect a BI tool (QuickSight or Metabase) for dashboards
 
 ---
-
-## 📄 License
-
-MIT — see `LICENSE` file.
-
----
-
-## 🙋 Author
-
-Built as a hands-on learning project to develop production-grade data engineering skills on AWS. Comments, suggestions, and pull requests welcome.
