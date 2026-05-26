@@ -1,0 +1,4 @@
+{
+  "Name": "nyc_taxi_raw",
+  "Description": "Raw NYC TLC trip data, schema inferred from S3"
+}
