@@ -1,0 +1,22 @@
+{
+  "Name": "nyc-taxi-raw-yellow-crawler-cli",
+  "Role": "AWSGlueServiceRole-DataLakeTutorial",
+  "DatabaseName": "nyc_taxi_raw",
+  "Description": "Infers schema of raw yellow-taxi Parquet in the S3 raw zone and registers it in the nyc_taxi_raw catalog database.",
+  "Targets": {
+    "S3Targets": [
+      {
+        "Path": "s3://marco-data-darya/raw/yellow_tripdata/",
+        "Exclusions": []
+      }
+    ]
+  },
+  "TablePrefix": "raw_",
+  "SchemaChangePolicy": {
+    "UpdateBehavior": "UPDATE_IN_DATABASE",
+    "DeleteBehavior": "DEPRECATE_IN_DATABASE"
+  },
+  "RecrawlPolicy": {
+    "RecrawlBehavior": "CRAWL_EVERYTHING"
+  }
+}

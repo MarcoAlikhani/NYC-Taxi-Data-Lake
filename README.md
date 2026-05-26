@@ -183,7 +183,11 @@ nyc-taxi-data-lake/
 
 ## 🚀 Getting started
 
-> ⚠️ **Status: under construction.** This README documents the planned project. Implementation begins after the learning phase is complete. See `docs/reports/` for current progress.
+> ⚙️ **Status: Phase 1 implemented.** Raw ingestion + the first Glue crawler are
+> live; the raw table `nyc_taxi_raw.raw_yellow_tripdata` is registered and
+> queryable in Athena. Phases 2–8 are still planned. See
+> `docs/reports/phase1_report.md` for the full Phase 1 writeup and
+> `docs/reports/` for learning-phase progress.
 
 ### Prerequisites
 
@@ -261,7 +265,7 @@ Tracked in detail under `docs/concepts/`. Highlights:
 
 ## 🗺️ Roadmap
 
-- [ ] Phase 1 — Build raw ingestion + first Glue crawler
+- [x] Phase 1 — Build raw ingestion + first Glue crawler ✅ *(report: `docs/reports/phase1_report.md`)*
 - [ ] Phase 2 — Build clean-zone ETL job (Parquet, partitioned)
 - [ ] Phase 3 — Build analytics-zone aggregates
 - [ ] Phase 4 — Add data quality tests
