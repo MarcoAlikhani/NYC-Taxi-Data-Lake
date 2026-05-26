@@ -1,11 +1,5 @@
 # Phase 1 Report — Raw Ingestion + First Glue Crawler
 
-**Project:** NYC Taxi Data Lake (serverless: S3 + Glue + Athena)
-**Phase:** 1 of 8 — *Build raw ingestion + first Glue crawler*
-**Date:** 2026-05-26
-**Region:** `eu-west-1` · **Account:** `055622654653` · **IAM user:** `Marco`
-**Status:** ✅ Complete and verified
-
 ---
 
 ## 1. Objective
