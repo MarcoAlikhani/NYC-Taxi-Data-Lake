@@ -1,0 +1,17 @@
+{
+  "Role": "AWSGlueServiceRole-DataLakeTutorial",
+  "Command": {
+    "Name": "glueetl",
+    "ScriptLocation": "s3://marco-data-darya/glue-scripts/clean_yellow_tripdata.py",
+    "PythonVersion": "3"
+  },
+  "DefaultArguments": {
+    "--job-language": "python",
+    "--enable-metrics": "true",
+    "--enable-continuous-cloudwatch-log": "true"
+  },
+  "GlueVersion": "4.0",
+  "WorkerType": "G.1X",
+  "NumberOfWorkers": 2,
+  "Timeout": 10
+}
