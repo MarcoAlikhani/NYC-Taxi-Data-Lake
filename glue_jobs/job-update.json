@@ -1,5 +1,4 @@
 {
-  "Name": "nyc-yellow-clean-etl-script",
   "Role": "AWSGlueServiceRole-DataLakeTutorial",
   "Command": {
     "Name": "glueetl",
@@ -13,6 +12,6 @@
   },
   "GlueVersion": "4.0",
   "WorkerType": "G.1X",
-  "NumberOfWorkers": 2,
-  "Timeout": 10
+  "NumberOfWorkers": 4,
+  "Timeout": 20
 }
