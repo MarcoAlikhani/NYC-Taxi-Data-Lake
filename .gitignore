@@ -6,7 +6,7 @@ __pycache__/
 .env
 .env.*
 !.env.example
-
+.raw_data/
 # --- Data files (the data lake lives in S3, never in git) ---
 *.parquet
 *.csv

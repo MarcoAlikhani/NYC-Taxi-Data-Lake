@@ -1,4 +1,5 @@
 {
+  "Name": "nyc-yellow-clean-etl-script",
   "Role": "AWSGlueServiceRole-DataLakeTutorial",
   "Command": {
     "Name": "glueetl",
