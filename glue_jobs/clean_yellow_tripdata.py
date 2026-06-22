@@ -22,9 +22,6 @@ args = getResolvedOptions(sys.argv, ["JOB_NAME"])
 sc = SparkContext()
 glueContext = GlueContext(sc)
 spark = glueContext.spark_session
-# Enable dynamic partition overwrite — only replaces partitions the
-# new data writes to, leaves other partitions untouched. Idempotent.
-spark.conf.set("spark.sql.sources.partitionOverwriteMode", "dynamic")
 job = Job(glueContext)
 job.init(args["JOB_NAME"], args)
 
@@ -93,26 +90,19 @@ df = df.repartition("pickup_year", "pickup_month")
 # ---- 7. Convert to DynamicFrame for the catalog-aware write ----
 clean_dyf = DynamicFrame.fromDF(df, glueContext, "clean_dyf")
 
-# ---- 8. Write Parquet with dynamic partition overwrite ----
-# We bypass the Glue DynamicFrame sink here and use Spark directly,
-# because the Glue sink doesn't honor partitionOverwriteMode.
-# We'll register the table via a separate Catalog call below.
-
-df.write \
-  .mode("overwrite") \
-  .partitionBy("pickup_year", "pickup_month") \
-  .option("compression", "snappy") \
-  .parquet(DST_S3_PATH)
-
-# Now register/update the table in the Catalog using boto3
-# (since we bypassed Glue's auto-cataloging sink)
-import boto3
-glue_client = boto3.client("glue", region_name="eu-west-1")
-
-# Trigger a "table update" by running a quick partition refresh
-# In production you'd use MSCK REPAIR or partition projection here.
-# For now, the simplest correct path: a second crawler over the clean zone.
-print("Data written. Run the clean-zone crawler to refresh partitions.")
+# ---- 8. Write Parquet, partitioned, register in Catalog ----
+sink = glueContext.getSink(
+    path=DST_S3_PATH,
+    connection_type="s3",
+    updateBehavior="UPDATE_IN_DATABASE",
+    partitionKeys=["pickup_year", "pickup_month"],
+    compression="snappy",
+    enableUpdateCatalog=True,
+    transformation_ctx="sink",
+)
+sink.setCatalogInfo(catalogDatabase=DST_DATABASE, catalogTableName=DST_TABLE)
+sink.setFormat("glueparquet")
+sink.writeFrame(clean_dyf)
 
 # ---- 9. Commit ----
 job.commit()
